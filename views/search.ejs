@@ -1,0 +1,70 @@
+<% include ./partials/header %>
+<hr class="hr-text" style="margin-top:80px;" data-content="Search">
+<% if(noMatch!="") { %>
+    <p class="search"><%=noMatch%></p>
+ <%} else { %>
+    <div class="container text-center headerRow">
+        <div class="row">
+            <div class="col-3">
+                Product Image
+            </div>
+            <div class="col-1">
+                Product Name
+            </div>
+            <div class="col-4">
+                Product Description
+            </div>
+            <div class="col-1">
+                Product Price and Currency
+            </div>
+            <div class="col-3">
+                Functions - Delete - Add
+            </div>
+        </div>
+        <% var j=-1; %>
+        <% products.forEach(function(product){ %>
+        <% j++; %>
+        <div class="row itemRow text-center">
+            <div class="col-3">
+                <a href="/home/findProduct/<%=product._id%>">
+                    <img class="wish-Img" src="<%=product.image%>" alt="">
+                </a>
+            </div>
+            <div class="col-1">
+                <p><%=product.name%></p>
+            </div>
+            <div class="col-4">
+                <p><%=product.desc%></p>
+            </div>
+            <div class="col-1">
+                <p>$ <%=product.price%></p>
+            </div>
+           
+            <div class="col-3">
+                <form action="/home/search/addWishlist" method="POST">
+                     <input style="display:none" type="text" value="<%=product.name%>" name="name">
+                     <input style="display:none" type="text" value="<%=product.desc%>" name="desc">
+                     <input style="display:none" type="text" value="<%=product.image%>" name="image">
+                     <input style="display:none" type="text" value="<%=product.price%>" name="price">
+                    <p class="wish"><button type="submit" class="btn2"><i id="icoWish"
+                                class="far mg3 fa-heart"></i></button></p>
+                </form>
+                <form action="/home/search/addShoppingCart" method="POST">
+                     <input style="display:none" type="text" value="<%=product.name%>" name="name">
+                     <input style="display:none" type="text" value="<%=product.desc%>" name="desc">
+                     <input style="display:none" type="text" value="<%=product.image%>" name="image">
+                     <input style="display:none" type="text" value="<%=product.price%>" name="price">
+                    <button type="submit" class="btn btn-primary">Add To Shopping Cart</button>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <% }); %>
+    </div>
+
+<%} %>
+
+
+
+
+<% include ./partials/footer %>

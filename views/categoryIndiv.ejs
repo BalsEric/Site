@@ -1,0 +1,26 @@
+<% include ./partials/header %>
+
+<p id="pth" class="path"><a class="disabled" href="/home/<%=category._id%>">Home</a></p>
+<div class="container">
+    <div id="ctgName" class="row ctg-name"><%=category.name%></div>
+    <div class="row ctg-desc">
+        - <%= category.desc %> -
+    </div>
+     <hr class="hr-text" data-content="Subcategory">
+    <% for(var i=0; i<=category.subcategory.length-1; i++) {%>
+    <div class="container ctg-cont brd">
+        <img class="subctg-img"
+            src="<%=category.subcategory[i].image%>">
+            <div class="row justify-content-center"">
+            <p class="subctg-desc"><%= category.subcategory[i].desc %></p>
+            <div class="w-100"></div>
+            <a class="btn btn-warning subctg-btn" href="/home/<%= category._id %>/<%= i %>">More info</a>
+        </div>
+    </div>
+    <hr>
+    <% } %>
+</div>
+
+
+<script type="text/javascript" src="/scripts/categoryScript.js"></script>
+<% include ./partials/footer %>

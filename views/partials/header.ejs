@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eric</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600,700&display=swap" rel="stylesheet">
+   
+   
+    </head>
+
+<body>
+    <nav class="menu fixed-top">
+        <div class="row">
+            <div class="col-2">
+                <a class="navbar-brand" href="/home/<%=categories[0]._id%>">Testing Project</a>
+                <button type="button" class="btn btn-primary headerBtn" data-toggle="modal" data-target="#exampleModal2">
+                    Code inspiration
+                </button>
+                 <a style="display:inline" class="prdHistory btn btn-primary btnHp" href="/home/productHistory">ProductHistory</a>
+            </div>
+            <div class="col-4">
+                <div class="category">
+                    <% categories.forEach(function(category2){ %>
+                        <a class="mode hdName ctgH" href="/home/<%= category2._id %>"><%=category2.name%></a>
+                    <% }); %>
+                </div>
+               
+            </div>
+            <div class="col-2 searchGroup">
+                <form  class="form-inline" action="/home/search" method="GET">
+                    <input type="text" class="form-control search2" name="search" autocomplete="off" placeholder="Search products...">
+                    <input type="submit" value="Search" class="btn btn-info searchBtn">
+                </form>
+            </div>
+    
+            <div class="col-4 profileBrd prfBackground">
+                <div class="profile">
+                    <div class="row">
+                        <div class="col-4">
+                             <label >User : <span class="span2"><%=currentUser.username%></span></label>
+                             <label>Balance: $<span class="span2"><%=currentUser.balance.toFixed(0)%></span></label>
+                         </div>
+
+                        <div class="col-8">
+                            <a href="/home/wishlist" ><i class="far fa-heart"></i><span
+                                    class="badge badge-light"><%=currentUser.wishlist.length%></span></a>
+                            <a href="/home/shoppingCart" ><i class="fas fa-shopping-cart"></i><span
+                                    class="badge badge-light"><%=currentUser.shoppingCart.length%></span></a>
+                            <a class="btn btn-outline-warning" href="/home/profile">Profile</a>
+                            <a class="btn btn-outline-warning" href="/logout">Logout</a>
+                            <a style="color:black" class="btn btn-outline-warning">Service</a>
+                            <a style="color:black" class="btn btn-outline-warning" data-toggle="modal"
+                                data-target="#exampleModal3">Contact</a>
+                            <a style="color:black" class="btn btn-outline-warning">Feedback</a>
+
+                       </div>
+                    </div>
+            </div>
+         </div>  
+    </nav>
+<hr>
+<a id="reputation" style="display:none" href=""><%=currentUser.reputation%></a>
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Code Inspiration</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <h4>100%</h4>
+                <h4>4000 Lines of Code : Original , Authentic & Pure CODE</h4>
+                <p>Technology : Boostrap, Express , StackoverFlow</p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <h4>Email : balseric7@gmail.com</h4>   
+                <p>Or</p>
+                <h3>Telefon : 999999999</h3>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <script>
+     var reputation = document.getElementById("reputation").textContent;
+     var menu = document.getElementsByClassName("menu");
+     var prfBackground = document.getElementsByClassName("prfBackground");
+     var profile = document.getElementsByClassName("profile");
+     if (reputation < 10) {
+         menu[0].style.boxShadow = "5px 5px gold";
+         prfBackground[0].style.boxShadow = "5px 5px  gold";
+         profile[0].style.backgroundColor = "gold";
+     } else if (reputation >= 10 && reputation < 99) {
+         menu[0].style.boxShadow = "5px 5px #6ab04c";
+         prfBackground[0].style.boxShadow = "5px 5px #6ab04c";
+         profile[0].style.backgroundColor = "#6ab04c";
+     }
+ </script>

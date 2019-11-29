@@ -1,0 +1,178 @@
+<% include ./partials/header %>
+<p id="pth" class="path"><a href="/home/<%=category._id%>/">Home</a>/<a
+        href="/home/<%=category._id%>/<%=index%>"><%=subctg.title%></a>/<a class="disabled"
+        href="/home/<%=category._id%>/<%=index%>/<%=productIndex%>"><%=product.name%></a></p>
+<p id="ctgName" style="display:none"><%=category.name%></p>
+
+<div class="container">
+    <div class="row align-items-center content dim3">
+        <% if(product.buc>0){ %>
+        <div class="col-md-6">
+            
+            <img  src="<%=product.image%>"
+                alt="" class="img-fluid prd-imd ">
+        </div>
+        <div class="col-md-6  product"> 
+                     <hr class="hr-text" data-content="<%=product.name%>">
+                    <form action="/home/<%=category._id%>/<%=index%>/<%=productIndex%>" method="POST">
+                        <span class="wish"><button type="submit"
+                                    class="btn2"><i id="icoWish" class="far mg3 fa-heart"></i></button></span>
+                    </form>
+                    <p value="<%=product.desc %>" class="lead"><%=product.desc%></p>
+                    <div style="display:inline" class="dim2">
+                        <a class="subctg-price">Price: $ <span id="price7"><%=product.price%></span></a>
+                        <select id="convert" class="convertor" >
+                            <option value="USD">USD</option>
+                            <option value="RON">RON</option>
+                            <option value="EUR">EUR</option>
+                        </select>
+                        <p style="display:none" id="check" name="check">.</p>
+                    </div>
+                    <div class="w-100"></div>
+                    <form class="buyForm" action="/home/<%=category._id%>/<%=index%>/<%=productIndex%>/add" method="POST">
+                        <a style="margin-top:15px;" id="icoBuy"
+                            href="/home/<%=category._id%>/<%=index%>/<%=productIndex%>/add"><button class="btn btn-info"
+                                type="submit">Buy
+                                Now</button></a>
+                    </form>
+         </div>
+         <% } else { %>
+            <div class="col-md-6">
+
+                <img src="<%=product.image%>" alt="" style="-webkit-filter: grayscale(100%);filter: grayscale(100%);"
+                    class="img-fluid prd-imd ">
+            </div>
+            <div class="col-md-6  product">
+                <hr class="hr-text" data-content="<%=product.name%>">
+                <form action="/home/<%=category._id%>/<%=index%>/<%=productIndex%>" method="POST">
+                    <span class="wish"><button type="submit" class="btn2"><i id="icoWish"
+                                class="far mg3 fa-heart"></i></button></span>
+                </form>
+                <p value="<%=product.desc %>" class="lead"><%=product.desc%></p>
+                <div style="display:inline" class="dim2">
+                    <a class="subctg-price">Price: $ <span id="price7"><%=product.price%></span></a>
+                    <select id="convert" class="convertor">
+                        <option value="USD">USD</option>
+                        <option value="RON">RON</option>
+                        <option value="EUR">EUR</option>
+                    </select>
+                    <p style="display:none" id="check" name="check">.</p>
+                </div>
+                <div class="w-100"></div>
+                    <a style="margin-top:20px" style="margin-top:15px;" id="icoBuy"><button class="btn btn-danger"
+                            type="submit">OUT OF STOCK</button></a>
+            </div>
+         <% } %>
+         <div class="buttons">
+             <form action="/home/<%=category._id%>/<%=index%>/<%=productIndex%>/like" method="POST">
+                <% if(product.nrLikes.length==0) { %>
+                <a class="btn btn-primary"><button id="btn"
+                        style="background:transparent;border:none;outline:none;color:white"
+                        type="submit">Like</button></a><span
+                    id="nrLikes"><%=product.nrLikes.length%>
+                </span><span>like</span>
+                <input style="display:none" name="like" value="like" type="text">
+                <%  }  else { %>
+                
+                <% for(var j=0;j<= product.nrLikes.length-1;j++){ %>
+                     <%   if(product.nrLikes[j].likedBy === currentUser.username){ %>
+                                <a class="btn btn-primary"><button
+                                        style="background:transparent;border:none;outline:none;color:white" id="btn"
+                                        type="submit">Liked</button></a><span
+                                    id="nrLikes"><%=product.nrLikes.length%>
+                                </span><span>likes</span>
+                                <input style="display:none" name="like" value="liked" type="text">
+                      <%  }else { %>
+                                <a class="btn btn-primary"><button style="background:transparent;border:none;outline:none;color:white" id="btn" type="submit">Like</button></a><span
+                                    id="nrLikes"><%=product.nrLikes.length%>
+                                </span><span>likes</span>
+                                <input style="display:none" name="like" value="like" type="text">
+                     <%   }  %>
+             <%   } } %>
+                    
+           
+            </form>
+             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+            Share
+        </button>
+        
+      
+       </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Share product link</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Link : <input value="" id="link"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="copy" onclick="myFunction()" class="btn btn-success">Copy</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container box3">
+            <p id="soldByP">Sold by - <span id="soldBy"><%=product.soldBy%></span></p>
+            <h5 id="deliveryTime" style="margin-top:15px; margin-bottom:10px"><i class="fas fa-truck"></i>   Estimated
+                delivery time : <span>(random.nrOfDays)</span></h5>
+            <h2 class="revTitle">Specifications</h2>
+            <% product.specifications.forEach(function(spec){ %>
+                <div class="row items">
+                    <div class="col-3">
+                        <%= spec.title %>
+                    </div>
+                    <div class="col-6">
+                        <%= spec.value %>
+                    </div>
+                    <hr>
+                </div>
+            <% }); %>
+
+        </div>
+        <div class="container box3">
+            <h2 class="float-left revTitle">Reviews <span class="revNr"><%=product.reviews.length%> reviews</span> <span id="avarage"></span></h2>
+            <a  class=" float-right btn btn-info" href="/home/<%=category._id%>/<%=index%>/<%=productIndex%>/addReview">Add new Review</a>
+            
+            <div class="row container review">
+                <% var i=product.reviews.length; %>
+                <% for(var j=0;j<=i-1; j++){ %>
+                <div class=" textRate ">
+                    <p class="title"><%= product.reviews[j].author.username %> </p>
+                    <p class="revDesc"> : <%= product.reviews[j].text %></p>
+                    <% if(currentUser.username === product.reviews[j].author.username) { %>
+                    <form style="display:inline"
+                        action="/home/<%=category._id%>/<%=index%>/<%=productIndex%>/reviews/<%=j%>?_method=DELETE"
+                        method="POST">
+                    <a href="/home/<%=category._id%>/<%=index%>/<%=productIndex%>/reviews/<%=j%>">
+                        <button type="submit" class=" btn btn-danger float-right">Delete</button></a></form>
+                    
+                         <a href="/home/<%=category._id%>/<%=index%>/<%=productIndex%>/reviews/<%=j%>/edit"><button
+                              type="submit"   class="btn btn-warning float-right">Edit</button></a>
+
+                    <% }; %>
+                    <i class="fas float-right fa-star"><span id="rate" class="badge badge-light"><%=product.reviews[j].rate %></span></i>
+                </div>
+        
+                <% }; %>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+<script scr="require.js"> </script>
+<script type="text/javascript" src="/scripts/product.js"></script>
+<script type="text/javascript" src="/scripts/categoryScript.js"></script>
+<% include ./partials/footer %>

@@ -1,0 +1,16 @@
+
+body {
+    font-family: 'Open Sans',sans-serif;
+    background-image: -webkit-linear-gradient(30deg, #273c75 50%, #487eb0 50%);
+    color:white;
+    height: 100vh;
+}
+div {
+    margin:200px auto;
+    align-content: center;
+    text-align: center;
+}
+h1 {
+    font-size:400%;
+    margin-bottom: 30px;
+}

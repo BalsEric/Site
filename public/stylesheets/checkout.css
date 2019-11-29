@@ -1,0 +1,80 @@
+*{
+    margin:0;
+    padding:0;
+
+}
+body {
+    margin:30px;
+    color: rgb(71, 71, 71);
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.trademark {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5px;
+    letter-spacing: 4px;
+}
+.dim {
+    width:50%;
+
+}
+.top {
+    width:100%;
+    font-size:28px;
+    background: lightgrey;
+    border-radius: 10px;
+}
+
+
+.dim2 {
+    float:left;
+}
+.list {
+    background: rgb(184, 230, 245);
+    margin-top:30px;
+    border-radius: 15px;
+    padding:10px;
+    font-size:16px;
+
+}
+li {
+    list-style: none;
+    border-bottom: 1px solid grey;
+    margin:10px auto;
+
+
+}
+.list a {
+    margin-top:50px;
+}
+.dim .totalNr {
+    float:right;
+    border-radius: 15px;
+}
+
+.selected {
+    background:lightblue;
+    color:white;
+    font-size:32px;
+    letter-spacing: 3px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+.form2 {
+    margin-top:25px;
+}
+
+
+#btn {
+    height:40px;
+    color:white;
+}
+#btn2 {
+    height:40px;
+    color:white;
+}
+input {
+    width:50%;
+}

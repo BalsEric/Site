@@ -1,0 +1,20 @@
+<% include ./partials/header %>
+ <hr class="hr-text" style="margin-top:80px;" data-content="Product Viewed History">
+    <% var i=paths.length; %>
+    <form class="text-center" action="/home/productHistory/delete?_method=DELETE" method="POST">
+        <button class="btn btn-danger prdH" type="submit">Delete History</button>
+    </form>
+    <div class="container productHistory">
+    <% if(paths.length == 0) { %>
+        <p>No paths available</p>
+    <%} %>
+    <% for(var j=i-1;j>0;j--){ %>
+        <div class="row elements">
+            <label for="">Path <%=j%> :</label>
+            <a href="<%=paths[j]%>"><%=paths[j]%></a>
+            <% i=i-1%>
+        </div>
+    <% }; %>
+    </div>
+
+<% include ./partials/footer %>

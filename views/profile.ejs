@@ -1,0 +1,77 @@
+<% include ./partials/header %>
+<div class="container profileCont">
+    <i class="fas fa-user ic border"></i>
+    <h2>Profile</h2>
+    <div class="row">
+      <div class="col-6">
+          <div class="container">
+            <label for="">Username : <span class=""><%= currentUser.username %></span></label>
+            <label for="">Email : <span class=""><%= currentUser.email %></span></label>
+            <label for="">Verify : <span class=""><%= currentUser.verify %></span></label>
+          </div>
+      </div>
+      <div class="col-6">
+        <div class="container">
+            <label for="">Reputation :  <span>
+              <% if(currentUser.reputation>=10 && currentUser.reputation<=99){ %>
+                 Medium User (<%=currentUser.reputation%> / 100 )
+             <% } else {  if(currentUser.reputation <= 9){ %>
+                  Begginer User (<%=currentUser.reputation%> / 10 )
+            <%  }   } %>
+            </span></label>
+            <div class="w-100"></div>
+            <label style="margin-bottom:10px;" for="">Shipping Adress :<span> <select name="" id="">
+              <% if(currentUser.shippingAdresses.adresses.length>0){ %>
+              <% var adressC=currentUser.shippingAdresses.current; %>
+              <% var text="str. "+ adressC.Street+" nr."+adressC.Number +" ,City:" + adressC.City+","+adressC.Country; %>
+              <option value=""><%= text%></option>
+              <% for(var i=0;i<= currentUser.shippingAdresses.adresses.length-1;i++){ %>
+                 <% var adress=currentUser.shippingAdresses.adresses[i]; %>
+                 <% var text="str. "+ adress.Street+" nr."+adress.Number +" ,City:" + adress.City+","+adress.Country; %>
+                <option value=""><%=text %></option>
+              <% } }%>
+            </select></span></label>
+             <div class="w-100"></div>
+            <a style="margin-left:30px;" href="/home/profile/addNewAdress"><i class="fas fa-plus"></i>   Add new adress</a>
+            <div class="w-100"></div>
+            <label for="">Balance : $<span><%=currentUser.balance.toFixed(2)%></span> <span id="balance2"><a
+                  style="margin-left:15px;"
+                  href="/home/addBalance"><i class="fas fa-plus"></i> Add money</a>
+                <a style="margin-left:30px;" href="/home/resetBalance"><i class="fas fa-minus"></i> Reset
+                  money</a></span></label>
+            <div class="w-100"></div>
+            <button type="button" style="margin-left:28px;font-size:14px;" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal5">
+              Past Orders
+            </button>
+            
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Past Orders</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <% currentUser.pastOrders.forEach(function(product){ %>
+            <% product.forEach(function(prd){ %>
+                <p>Product: <span><%=prd.name%></span>  , Price:<span>$ <%=prd.price%></span></p>
+         <%   }); %>
+        <% }); %>
+      </div>
+      <div class="modal-footer text-center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<% include ./partials/footer %>

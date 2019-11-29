@@ -1,0 +1,55 @@
+<% include ./partials/header %>
+
+ <hr class="hr-text" style="margin-top:80px;" data-content="Wishlist">
+<div class="container text-center headerRow">
+    <div class="row">
+        <div class="col-3">
+            Product Image
+        </div>
+        <div class="col-1">
+            Product Name
+        </div>
+        <div class="col-4">
+            Product Description
+        </div>
+        <div class="col-1">
+            Product Price and Currency
+        </div>
+        <div class="col-3">
+           Functions - Delete - Add
+        </div>
+    </div>
+    <% var j=-1; %>
+    <% products.forEach(function(product){ %>
+        <% j++; %>
+    <div class="row itemRow text-center">
+        <div class="col-3">
+            <img class="wish-Img" src="<%=product.image%>" alt="">
+        </div>
+        <div class="col-1">
+            <p><%=product.name%></p>
+        </div>
+        <div class="col-4">
+            <p><%=product.desc%></p>
+        </div>
+        <div class="col-1">
+            <p>$ <%=product.price%></p>
+        </div>
+        <div class="col-3">
+            <form style="margin-bottom:10px;" action="/home/wishlist/<%=j%>/delete?_method=DELETE" method="POST">
+                 <button class="btn btn-danger">Delete</button>
+            </form>
+            <form action="/home/wishlist/<%=j%>/add" method="POST">
+                <button class="btn btn-primary">Add To Shopping Cart</button>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <% }); %>
+</div>
+
+
+
+
+
+<% include ./partials/footer %>

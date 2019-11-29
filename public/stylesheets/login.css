@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+    background: url('https://coolbackgrounds.io/images/backgrounds/index/ranger-4df6c1b6.png');
+    background-size: cover;
+    color:white;
+}
+
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 30px 40px 10px 40px;
+    background: rgba(0, 0, 0, .8);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+    border-radius: 10px;
+}
+
+.box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: darkseagreen;
+    text-align: center;
+    font-size:40px;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-animation: autofill 0s forwards;
+    animation: autofill 0s forwards;
+    color:white;
+}
+
+@keyframes autofill {
+    100% {
+        background: transparent;
+        color: white;
+    }
+}
+
+@-webkit-keyframes autofill {
+    100% {
+        background: transparent;
+        color: white;
+    }
+}
+
+.box .bx input {
+    width: 100%;
+    padding: 10px 0;
+    font-size:20px;
+    color: white;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+    text-align: center;
+}
+
+label {
+    color: orange;
+    margin:0 auto;
+    font-size:24px;
+    font-weight: 400;
+    letter-spacing: 2px;
+     pointer-events: none;
+}
+
+.box input[type="submit"] {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #03a9f4;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size:18px;
+    
+}
+
+.inp {
+    text-align: center;
+    align-content: center;
+    margin: 0 0 10px auto;
+    font-size:20px;
+}
+
+.inp2 {
+    text-align: center;
+    align-content: center;
+    margin: 0 0 10px auto;
+    font-size:20px;
+    color:white;
+}
+.trademark {
+    text-align: center;
+    font-size:12px;
+    color: lightblue;
+    margin-top:25px;
+    
+}
+
+a:hover {
+    outline: none;
+    color:black;
+}
+
+.forms {
+    text-align: center;
+    font-size: 18px;
+
+
+}
